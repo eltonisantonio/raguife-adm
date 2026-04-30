@@ -923,8 +923,9 @@ function defaultDB() {
     acidente_fatal: false,
     faturamento: {},  // { 'YYYY-MM': percentual (0-10) }
     setores: [
-      "ADMINISTRATIVO","COMERCIAL","COMPRAS","CONTROLADORIA","FINANCEIRO",
-      "JURIDICO","LOGISTICA","MARKETING","PCP","RH","TI"
+      "ALMOXARIFADO","BALANÇA","COMPRAS E AQUISIÇÕES","FATURAMENTO","FISCAL",
+      "MARKETING","PPCP","PROCESSOS E MELHORIA CONTÍNUA","TI",
+      "COMERCIAL","CONTROLADORIA","FINANCEIRO","JURIDICO","RH"
     ],
     turnos: [
       "1º Turno - 21:00 / 05:20",
@@ -941,7 +942,50 @@ function defaultDB() {
 }
 
 function defaultIndicadores() {
-  return [];
+  return [
+    // ALMOXARIFADO
+    {id:1,setor:"ALMOXARIFADO",turno:"",nome:"ACURACIDADE DO ESTOQUE",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.40,m85:94,m90:96,m95:98,m100:100},
+    {id:2,setor:"ALMOXARIFADO",turno:"",nome:"ATENDIMENTO NO PRAZO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.10,m85:94,m90:96,m95:98,m100:100},
+    {id:3,setor:"ALMOXARIFADO",turno:"",nome:"RUPTURA DE INSUMO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:0},
+
+    // COMPRAS E AQUISIÇÕES
+    {id:4,setor:"COMPRAS E AQUISIÇÕES",turno:"",nome:"SAVING MÉDIO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.50,m85:3.5,m90:3.8,m95:4.2,m100:4.5},
+    {id:5,setor:"COMPRAS E AQUISIÇÕES",turno:"",nome:"PMP – PRAZO MÉDIO DE PAGAMENTO (DIAS)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.20,m85:30,m90:31,m95:32,m100:33},
+    {id:6,setor:"COMPRAS E AQUISIÇÕES",turno:"",nome:"RUPTURA INSUMOS",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.20,m85:4,m90:3,m95:2,m100:0},
+
+    // TI
+    {id:7,setor:"TI",turno:"",nome:"DISPONIBILIDADE DE REDE",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.40,m85:98,m90:99,m95:99.5,m100:99.9},
+    {id:8,setor:"TI",turno:"",nome:"SLA – ATENDIMENTO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:94,m90:96,m95:98,m100:99},
+    {id:9,setor:"TI",turno:"",nome:"ÍNDICE DE SATISFAÇÃO (CSAT)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.10,m85:90,m90:93,m95:95,m100:97},
+
+    // PPCP
+    {id:10,setor:"PPCP",turno:"",nome:"ADERÊNCIA AO PLANEJAMENTO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.30,m85:85,m90:90,m95:95,m100:98},
+    {id:11,setor:"PPCP",turno:"",nome:"ON TIME (PEDIDOS NO PRAZO)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:94,m90:96,m95:98,m100:100},
+    {id:12,setor:"PPCP",turno:"",nome:"CORRIDA DE MÁQUINA GLOBAL",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:85,m90:90,m95:95,m100:98},
+
+    // PROCESSOS E MELHORIA CONTÍNUA
+    {id:13,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"EFICIÊNCIA OPERACIONAL (REDUÇÃO DE PARADAS CRÍTICAS)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.25,m85:5,m90:null,m95:null,m100:10},
+    {id:14,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"ÍNDICE DE REPROCESSO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.25,m85:2.5,m90:2.2,m95:2.1,m100:2},
+    {id:15,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"PROJETOS DE MELHORIA CONTÍNUA IMPLANTADOS",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.20,m85:1.01,m90:1.02,m95:1.03,m100:3},
+
+    // MARKETING
+    {id:16,setor:"MARKETING",turno:"",nome:"PERFORMANCE DIGITAL",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.45,m85:3,m90:3.5,m95:4,m100:5},
+    {id:17,setor:"MARKETING",turno:"",nome:"PERFORMANCE DIGITAL (INDICADOR DE AUDIÊNCIA / CRESCIMENTO)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.45,m85:2,m90:2.5,m95:3,m100:4},
+
+    // BALANÇA
+    {id:18,setor:"BALANÇA",turno:"",nome:"DESVIO NA TOLERÂNCIA",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"decimal",peso:0.45,m85:0.50,m90:0.45,m95:0.40,m100:0.35},
+    {id:19,setor:"BALANÇA",turno:"",nome:"ERROS DE TICKET (OCORRÊNCIA)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.45,m85:3,m90:2,m95:1,m100:0},
+
+    // FISCAL
+    {id:20,setor:"FISCAL",turno:"",nome:"FECHAMENTO FISCAL (PRAZO) – ATRASO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.40,m85:8,m90:7,m95:6,m100:5},
+    {id:21,setor:"FISCAL",turno:"",nome:"INFRAÇÕES FISCAIS (OCORRÊNCIAS)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.25,m85:3,m90:2,m95:1,m100:0},
+    {id:22,setor:"FISCAL",turno:"",nome:"SLA – ATENDIMENTO SUPORTE FISCAL",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.25,m85:7,m90:8,m95:9,m100:10},
+
+    // FATURAMENTO
+    {id:23,setor:"FATURAMENTO",turno:"",nome:"% DE DEVOLUÇÕES NFE EMITIDAS",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:100},
+    {id:24,setor:"FATURAMENTO",turno:"",nome:"ATRASOS NO OTIF POR FATURAMENTO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:100},
+    {id:25,setor:"FATURAMENTO",turno:"",nome:"SLA – ATENDIMENTO FATURAMENTO (PONTUAÇÃO)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:7,m90:8,m95:9,m100:10},
+  ];
 }
 
 // ════════════════════════════════════════════
@@ -1030,21 +1074,10 @@ function calcAtingInd(ind, resultado) {
   let v = parseFloat(resultado);
   if (isNaN(v)) return null;
 
-  let {sentido, m85, m90, m95, m100, peso, formato} = ind;
+  let {sentido, m85, m90, m95, m100, peso} = ind;
 
-  // Para formato inteiro: comparar resultado e metas na mesma escala (inteiro)
-  // Para decimal: metas já estão em decimal (ex: 0.92), resultado também
-  // Para absoluto: comparar direto sem conversão
-  // Normalizar tudo para decimal para o cálculo de interpolação
-  if (formato === 'inteiro') {
-    // Resultado e metas já estão em inteiro — converter tudo para decimal
-    v = v / 100;
-    if (m85 !== null && m85 !== undefined) m85 = m85 / 100;
-    if (m90 !== null && m90 !== undefined) m90 = m90 / 100;
-    if (m95 !== null && m95 !== undefined) m95 = m95 / 100;
-    if (m100 !== null && m100 !== undefined) m100 = m100 / 100;
-  }
-
+  // Comparar resultado e metas sempre na mesma escala em que foram cadastrados
+  // Sem conversão — o usuário cadastra metas e resultado na mesma unidade
   if (m100 === null || m100 === undefined) return null;
   const cmp = sentido === 'maior' ? (a,b) => a >= b : (a,b) => a <= b;
   const interp = (r, lo, hi, loV, hiV) => {
