@@ -923,9 +923,10 @@ function defaultDB() {
     acidente_fatal: false,
     faturamento: {},  // { 'YYYY-MM': percentual (0-10) }
     setores: [
-      "ALMOXARIFADO","BALANÇA","COMPRAS E AQUISIÇÕES","FATURAMENTO","FISCAL",
-      "MARKETING","PPCP","PROCESSOS E MELHORIA CONTÍNUA","TI",
-      "COMERCIAL","CONTROLADORIA","FINANCEIRO","JURIDICO","RH"
+      "ALMOXARIFADO","AMBULATÓRIO","BALANÇA","COMERCIAL AQUA","COMERCIAL PET",
+      "COMPRAS E AQUISIÇÕES","CONTROLADORIA","DEPARTAMENTO PESSOAL","FATURAMENTO",
+      "FINANCEIRO","FISCAL","MARKETING","PPCP","PROCESSOS E MELHORIA CONTÍNUA",
+      "RECURSOS HUMANOS","TI"
     ],
     turnos: [
       "1º Turno - 21:00 / 05:20",
@@ -943,48 +944,81 @@ function defaultDB() {
 
 function defaultIndicadores() {
   return [
-    // ALMOXARIFADO
-    {id:1,setor:"ALMOXARIFADO",turno:"",nome:"ACURACIDADE DO ESTOQUE",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.40,m85:94,m90:96,m95:98,m100:100},
-    {id:2,setor:"ALMOXARIFADO",turno:"",nome:"ATENDIMENTO NO PRAZO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.10,m85:94,m90:96,m95:98,m100:100},
-    {id:3,setor:"ALMOXARIFADO",turno:"",nome:"RUPTURA DE INSUMO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:0},
+    // ALMOXARIFADO (Slide 1)
+    {id:1,setor:"ALMOXARIFADO",turno:"",nome:"ACURACIDADE DO ESTOQUE (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.40,m85:94,m90:96,m95:98,m100:100},
+    {id:2,setor:"ALMOXARIFADO",turno:"",nome:"RUPTURA INSUMOS (QTD)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:0},
+    {id:3,setor:"ALMOXARIFADO",turno:"",nome:"ATENDIMENTO NO PRAZO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.10,m85:94,m90:96,m95:98,m100:100},
 
-    // COMPRAS E AQUISIÇÕES
-    {id:4,setor:"COMPRAS E AQUISIÇÕES",turno:"",nome:"SAVING MÉDIO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.50,m85:3.5,m90:3.8,m95:4.2,m100:4.5},
+    // COMPRAS E AQUISIÇÕES (Slide 2)
+    {id:4,setor:"COMPRAS E AQUISIÇÕES",turno:"",nome:"SAVING MÉDIO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.50,m85:3.5,m90:3.8,m95:4.2,m100:4.5},
     {id:5,setor:"COMPRAS E AQUISIÇÕES",turno:"",nome:"PMP – PRAZO MÉDIO DE PAGAMENTO (DIAS)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.20,m85:30,m90:31,m95:32,m100:33},
-    {id:6,setor:"COMPRAS E AQUISIÇÕES",turno:"",nome:"RUPTURA INSUMOS",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.20,m85:4,m90:3,m95:2,m100:0},
+    {id:6,setor:"COMPRAS E AQUISIÇÕES",turno:"",nome:"RUPTURA INSUMOS (QTD)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.20,m85:4,m90:3,m95:2,m100:0},
 
-    // TI
-    {id:7,setor:"TI",turno:"",nome:"DISPONIBILIDADE DE REDE",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.40,m85:98,m90:99,m95:99.5,m100:99.9},
-    {id:8,setor:"TI",turno:"",nome:"SLA – ATENDIMENTO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:94,m90:96,m95:98,m100:99},
-    {id:9,setor:"TI",turno:"",nome:"ÍNDICE DE SATISFAÇÃO (CSAT)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.10,m85:90,m90:93,m95:95,m100:97},
+    // TI (Slide 3)
+    {id:7,setor:"TI",turno:"",nome:"DISPONIBILIDADE DE REDE (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.40,m85:98,m90:99,m95:99.5,m100:99.9},
+    {id:8,setor:"TI",turno:"",nome:"SLA – ATENDIMENTO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:94,m90:96,m95:98,m100:99},
+    {id:9,setor:"TI",turno:"",nome:"ÍNDICE DE SATISFAÇÃO (CSAT) (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.10,m85:90,m90:93,m95:95,m100:97},
 
-    // PPCP
-    {id:10,setor:"PPCP",turno:"",nome:"ADERÊNCIA AO PLANEJAMENTO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.30,m85:85,m90:90,m95:95,m100:98},
-    {id:11,setor:"PPCP",turno:"",nome:"ON TIME (PEDIDOS NO PRAZO)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:94,m90:96,m95:98,m100:100},
-    {id:12,setor:"PPCP",turno:"",nome:"CORRIDA DE MÁQUINA GLOBAL",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:85,m90:90,m95:95,m100:98},
+    // PPCP (Slide 4)
+    {id:10,setor:"PPCP",turno:"",nome:"ADERÊNCIA AO PLANO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.30,m85:85,m90:90,m95:95,m100:98},
+    {id:11,setor:"PPCP",turno:"",nome:"ON TIME — PEDIDOS NO PRAZO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:94,m90:96,m95:98,m100:100},
+    {id:12,setor:"PPCP",turno:"",nome:"CORRIDA DE MÁQUINA GLOBAL (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:85,m90:90,m95:95,m100:98},
 
-    // PROCESSOS E MELHORIA CONTÍNUA
-    {id:13,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"EFICIÊNCIA OPERACIONAL (REDUÇÃO DE PARADAS CRÍTICAS)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.25,m85:5,m90:null,m95:null,m100:10},
-    {id:14,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"ÍNDICE DE REPROCESSO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.25,m85:2.5,m90:2.2,m95:2.1,m100:2},
-    {id:15,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"PROJETOS DE MELHORIA CONTÍNUA IMPLANTADOS",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.20,m85:1.01,m90:1.02,m95:1.03,m100:3},
+    // PROCESSOS E MELHORIA CONTÍNUA (Slide 5)
+    {id:13,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"EFICIÊNCIA OPERACIONAL — REDUÇÃO DE PARADAS CRÍTICAS (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.25,m85:5,m90:null,m95:null,m100:10},
+    {id:14,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"ÍNDICE DE REPROCESSO (%)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.25,m85:2.5,m90:2.2,m95:2.1,m100:2.0},
+    {id:15,setor:"PROCESSOS E MELHORIA CONTÍNUA",turno:"",nome:"PROJETOS DE MELHORIA CONTÍNUA IMPLANTADOS",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.20,m85:1,m90:null,m95:null,m100:3},
 
-    // MARKETING
-    {id:16,setor:"MARKETING",turno:"",nome:"PERFORMANCE DIGITAL",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.45,m85:3,m90:3.5,m95:4,m100:5},
-    {id:17,setor:"MARKETING",turno:"",nome:"PERFORMANCE DIGITAL (INDICADOR DE AUDIÊNCIA / CRESCIMENTO)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.45,m85:2,m90:2.5,m95:3,m100:4},
+    // MARKETING (Slide 6)
+    {id:16,setor:"MARKETING",turno:"",nome:"PERFORMANCE DIGITAL — ENGAJAMENTO REDES SOCIAIS (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.45,m85:3,m90:3.5,m95:4.0,m100:5},
+    {id:17,setor:"MARKETING",turno:"",nome:"PERFORMANCE DIGITAL — AUDIÊNCIA / CRESCIMENTO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.45,m85:2,m90:2.5,m95:3.0,m100:4},
 
-    // BALANÇA
-    {id:18,setor:"BALANÇA",turno:"",nome:"DESVIO NA TOLERÂNCIA",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"decimal",peso:0.45,m85:0.50,m90:0.45,m95:0.40,m100:0.35},
-    {id:19,setor:"BALANÇA",turno:"",nome:"ERROS DE TICKET (OCORRÊNCIA)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.45,m85:3,m90:2,m95:1,m100:0},
+    // BALANÇA (Slide 7)
+    {id:18,setor:"BALANÇA",turno:"",nome:"DESVIO NA TOLERÂNCIA (%)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.40,m85:0.50,m90:0.45,m95:0.40,m100:0.35},
+    {id:19,setor:"BALANÇA",turno:"",nome:"ERROS DE TICKET (OCORRÊNCIA)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.40,m85:3,m90:2,m95:1,m100:0},
 
-    // FISCAL
-    {id:20,setor:"FISCAL",turno:"",nome:"FECHAMENTO FISCAL (PRAZO) – ATRASO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.40,m85:8,m90:7,m95:6,m100:5},
+    // FISCAL (Slide 8)
+    {id:20,setor:"FISCAL",turno:"",nome:"FECHAMENTO FISCAL — PRAZO EM ATRASO (DIA ÚTIL)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.40,m85:8,m90:7,m95:6,m100:5},
     {id:21,setor:"FISCAL",turno:"",nome:"INFRAÇÕES FISCAIS (OCORRÊNCIAS)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.25,m85:3,m90:2,m95:1,m100:0},
-    {id:22,setor:"FISCAL",turno:"",nome:"SLA – ATENDIMENTO SUPORTE FISCAL",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.25,m85:7,m90:8,m95:9,m100:10},
+    {id:22,setor:"FISCAL",turno:"",nome:"SLA – ATENDIMENTO SUPORTE FISCAL (PONTUAÇÃO)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.25,m85:7,m90:8,m95:9,m100:10},
 
-    // FATURAMENTO
-    {id:23,setor:"FATURAMENTO",turno:"",nome:"% DE DEVOLUÇÕES NFE EMITIDAS",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:100},
-    {id:24,setor:"FATURAMENTO",turno:"",nome:"ATRASOS NO OTIF POR FATURAMENTO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:100},
+    // FATURAMENTO (Slide 9)
+    {id:23,setor:"FATURAMENTO",turno:"",nome:"% DE DEVOLUÇÕES NFE EMITIDAS",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:1},
+    {id:24,setor:"FATURAMENTO",turno:"",nome:"ATRASOS NO OTIF POR FATURAMENTO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:4,m90:3,m95:2,m100:1},
     {id:25,setor:"FATURAMENTO",turno:"",nome:"SLA – ATENDIMENTO FATURAMENTO (PONTUAÇÃO)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:7,m90:8,m95:9,m100:10},
+
+    // CONTROLADORIA (Slide 10)
+    {id:26,setor:"CONTROLADORIA",turno:"",nome:"RELATÓRIO ORÇADO X REALIZADO (SEMANAL)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:1,m90:2,m95:3,m100:4},
+    {id:27,setor:"CONTROLADORIA",turno:"",nome:"GESTÃO DE CONTRATOS (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.30,m85:96,m90:97,m95:98,m100:99},
+    {id:28,setor:"CONTROLADORIA",turno:"",nome:"SLA – ATENDIMENTO CONTROLADORIA (PONTUAÇÃO)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:7,m90:8,m95:9,m100:10},
+
+    // COMERCIAL AQUA (Slide 11)
+    {id:29,setor:"COMERCIAL AQUA",turno:"",nome:"ACURACIDADE FORECAST — VOLUME (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.45,m85:95,m90:96,m95:97,m100:98},
+    {id:30,setor:"COMERCIAL AQUA",turno:"",nome:"ACURACIDADE FORECAST — FAMÍLIA (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.45,m85:95,m90:96,m95:97,m100:98},
+
+    // COMERCIAL PET (Slide 12)
+    {id:31,setor:"COMERCIAL PET",turno:"",nome:"ACURACIDADE FORECAST — VOLUME (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.45,m85:95,m90:96,m95:97,m100:98},
+    {id:32,setor:"COMERCIAL PET",turno:"",nome:"ACURACIDADE FORECAST — FAMÍLIA (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.45,m85:95,m90:96,m95:97,m100:98},
+
+    // AMBULATÓRIO (Slide 13)
+    {id:33,setor:"AMBULATÓRIO",turno:"",nome:"PESQUISA DE SATISFAÇÃO",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:8.0,m90:8.5,m95:9.0,m100:9.5},
+    {id:34,setor:"AMBULATÓRIO",turno:"",nome:"DSP",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:255,m90:270,m95:285,m100:300},
+    {id:35,setor:"AMBULATÓRIO",turno:"",nome:"ABSENTEÍSMO MÉDICO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:1.72,m90:1.65,m95:1.57,m100:1.50},
+
+    // RECURSOS HUMANOS (Slide 14)
+    {id:36,setor:"RECURSOS HUMANOS",turno:"",nome:"ADERÊNCIA SLA R&S (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.40,m85:85,m90:87,m95:89,m100:90},
+    {id:37,setor:"RECURSOS HUMANOS",turno:"",nome:"ATIVIDADES NO PRAZO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.30,m85:85,m90:87,m95:89,m100:90},
+    {id:38,setor:"RECURSOS HUMANOS",turno:"",nome:"% EFETIVAÇÃO 90 DIAS",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.20,m85:80,m90:82,m95:84,m100:85},
+
+    // DEPARTAMENTO PESSOAL (Slide 15)
+    {id:39,setor:"DEPARTAMENTO PESSOAL",turno:"",nome:"ASSERTIVIDADE CONCILIAÇÃO FINANCEIRA (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.40,m85:85,m90:90,m95:95,m100:100},
+    {id:40,setor:"DEPARTAMENTO PESSOAL",turno:"",nome:"ATIVIDADES NO PRAZO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.40,m85:85,m90:90,m95:95,m100:100},
+    {id:41,setor:"DEPARTAMENTO PESSOAL",turno:"",nome:"JUSTIFICATIVAS DE OCORRÊNCIAS DE PONTO (%)",sentido:"maior",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.10,m85:85,m90:90,m95:95,m100:100},
+
+    // FINANCEIRO (Slide 16)
+    {id:42,setor:"FINANCEIRO",turno:"",nome:"CONTROLE DE ADIANTAMENTOS — EFETUADOS (%)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.30,m85:25,m90:20,m95:15,m100:10},
+    {id:43,setor:"FINANCEIRO",turno:"",nome:"INADIMPLÊNCIA (%)",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"inteiro",peso:0.30,m85:22,m90:20,m95:17,m100:15},
+    {id:44,setor:"FINANCEIRO",turno:"",nome:"CONCILIAÇÃO BANCÁRIA — DIAS EM ATRASO",sentido:"menor",periodicidade:"mensal",fechamento:null,funcao:"",formato:"absoluto",peso:0.30,m85:6,m90:5,m95:4,m100:3},
   ];
 }
 
@@ -1074,20 +1108,16 @@ function calcAtingInd(ind, resultado) {
   let v = parseFloat(resultado);
   if (isNaN(v)) return null;
 
-  let {sentido, m85, m90, m95, m100, peso} = ind;
-
-  // Comparar resultado e metas sempre na mesma escala em que foram cadastrados
-  // Sem conversão — o usuário cadastra metas e resultado na mesma unidade
+  const {sentido, m85, m90, m95, m100, peso} = ind;
   if (m100 === null || m100 === undefined) return null;
+
   const cmp = sentido === 'maior' ? (a,b) => a >= b : (a,b) => a <= b;
-  const interp = (r, lo, hi, loV, hiV) => {
-    if (lo === null || hi === null || lo === hi) return loV;
-    return loV + (hiV - loV) * (r - lo) / (hi - lo);
-  };
+
+  // Lógica por faixa — sem interpolação
   if (cmp(v, m100)) return peso;
-  if (m95 !== null && cmp(v, m95)) return peso * interp(v, m95, m100, 0.95, 1.0);
-  if (m90 !== null && cmp(v, m90)) return peso * interp(v, m90, m95??m100, 0.90, 0.95);
-  if (m85 !== null && cmp(v, m85)) return peso * interp(v, m85, m90??m95??m100, 0.85, 0.90);
+  if (m95 !== null && cmp(v, m95)) return peso * 0.95;
+  if (m90 !== null && cmp(v, m90)) return peso * 0.90;
+  if (m85 !== null && cmp(v, m85)) return peso * 0.85;
   return 0;
 }
 
@@ -1111,9 +1141,18 @@ function indicadorContaMes(ind, mes, ano) {
   return true;
 }
 
-function fmt(v) {
+function fmt(v, formato) {
   if (v === null || v === undefined) return '—';
   if (typeof v === 'number') {
+    // Se formato é decimal ou absoluto, exibir o valor diretamente sem converter para %
+    if (formato === 'decimal' || formato === 'absoluto') {
+      return v.toLocaleString('pt-BR', {maximumFractionDigits:4});
+    }
+    // Formato inteiro: exibir como número inteiro
+    if (formato === 'inteiro') {
+      return v.toLocaleString('pt-BR', {maximumFractionDigits:2});
+    }
+    // Fallback (sem formato definido): comportamento anterior
     if (v < 0.1 && v > 0) return v.toFixed(4);
     if (v <= 1 && v > 0) return (v*100).toFixed(1)+'%';
     return v.toLocaleString('pt-BR', {maximumFractionDigits:3});
@@ -1302,10 +1341,10 @@ function renderLancamento(setor, turno, funcao, period) {
         <td>${periodTag(ind.periodicidade)} ${naoContaTag}</td>
         <td><span class="badge ${ind.sentido==='maior'?'badge-green':'badge-blue'}">${ind.sentido==='maior'?'↑ Maior':'↓ Menor'}</span></td>
         <td class="mono">${(ind.peso*100).toFixed(0)}%</td>
-        <td class="mono" style="color:var(--text2)">${fmt(ind.m85)}</td>
-        <td class="mono" style="color:var(--text2)">${fmt(ind.m90)}</td>
-        <td class="mono" style="color:var(--text2)">${fmt(ind.m95)}</td>
-        <td class="mono" style="color:var(--text2);font-weight:600">${fmt(ind.m100)}</td>
+        <td class="mono" style="color:var(--text2)">${fmt(ind.m85, ind.formato)}</td>
+        <td class="mono" style="color:var(--text2)">${fmt(ind.m90, ind.formato)}</td>
+        <td class="mono" style="color:var(--text2)">${fmt(ind.m95, ind.formato)}</td>
+        <td class="mono" style="color:var(--text2);font-weight:600">${fmt(ind.m100, ind.formato)}</td>
         <td>
           <div style="display:flex;align-items:center;gap:4px;">
             <input class="input-nota" type="number" step="any" value="${res!==undefined?res:''}"
@@ -1544,10 +1583,10 @@ function renderIndicadores() {
       <td><span class="badge badge-gray" style="font-size:10px">${ind.formato==='inteiro'?'%int':ind.formato==='absoluto'?'abs':'dec'}</span></td>
       <td>${periodTag(ind.periodicidade)}</td>
       <td class="mono">${(ind.peso*100).toFixed(0)}%</td>
-      <td class="mono" style="color:var(--text2)">${fmt(ind.m85)}</td>
-      <td class="mono" style="color:var(--text2)">${fmt(ind.m90)}</td>
-      <td class="mono" style="color:var(--text2)">${fmt(ind.m95)}</td>
-      <td class="mono" style="font-weight:600">${fmt(ind.m100)}</td>
+      <td class="mono" style="color:var(--text2)">${fmt(ind.m85, ind.formato)}</td>
+      <td class="mono" style="color:var(--text2)">${fmt(ind.m90, ind.formato)}</td>
+      <td class="mono" style="color:var(--text2)">${fmt(ind.m95, ind.formato)}</td>
+      <td class="mono" style="font-weight:600">${fmt(ind.m100, ind.formato)}</td>
       <td style="display:flex;gap:6px;align-items:center;">
         <button class="btn btn-ghost btn-sm" onclick="abrirEditarIndicador(${ind.id})">Editar</button>
         <button class="btn btn-danger btn-sm" onclick="removeIndicador(${ind.id})">Remover</button>
@@ -1975,7 +2014,7 @@ function renderGestores() {
       const res = saved[ind.id];
       const ating = conta ? calcAtingInd(ind, res) : null;
       const pct = ating !== null ? (ating/ind.peso*100).toFixed(1)+'%' : '—';
-      const resDisplay = res !== undefined && res !== null ? res : '—';
+      const resDisplay = res !== undefined && res !== null ? fmt(res, ind.formato) : '—';
       return `<tr class="gd-${idx}" style="display:none;background:rgba(2,79,43,0.03);">
         <td style="padding-left:28px;font-size:12px;color:var(--text2);border-bottom:1px solid var(--border)">${ind.nome}</td>
         <td style="font-size:11px;border-bottom:1px solid var(--border)">${periodTag(ind.periodicidade)}</td>
