@@ -800,6 +800,7 @@ async function loadFromFirebase() {
       const data = doc.data();
       if (data.dados) {
         const fbData = migrateDB(JSON.parse(data.dados));
+        fbData.periodo = { mes: 4, ano: 2026 };
         db = fbData;
         localStorage.setItem(DB_KEY, JSON.stringify(db));
         hideFBStatus();
@@ -910,7 +911,7 @@ function hideSPStatus() {
 
 function defaultDB() {
   return {
-    periodo: { mes: new Date().getMonth()+1, ano: new Date().getFullYear() },
+    periodo: { mes: 4, ano: 2026 },
     acidente_fatal: false,
     faturamento: {},  // { 'YYYY-MM': percentual (0-10) }
     setores: [
@@ -925,7 +926,13 @@ function defaultDB() {
       "3º Turno - 13:00 / 21:20"
     ],
     indicadores: defaultIndicadores(),
-    resultados: {},
+    resultados: {
+      "2026-04": {
+        "CONTROLADORIA||": {"26":3,"27":99,"28":10},
+        "FISCAL||": {"20":5,"22":10},
+        "FATURAMENTO||": {"25":9.8}
+      }
+    },
     s5: {},        // { "SETOR||YYYY-MM": [{nota, data, auditor}, ...] }
     sst_incidentes: [],
     senhas: { qualidade: '', sst: '', planejamento: '' },
@@ -2168,6 +2175,7 @@ function carregarJSON(e) {
       if (!loaded.setores || loaded.setores.length === 0) loaded.setores = defaultDB().setores;
       if (!loaded.indicadores || loaded.indicadores.length === 0) loaded.indicadores = defaultDB().indicadores;
       if (!loaded.turnos || loaded.turnos.length === 0) loaded.turnos = defaultDB().turnos;
+      loaded.periodo = { mes: 4, ano: 2026 };
       db = loaded;
       saveDB(db);
       const now = new Date();
